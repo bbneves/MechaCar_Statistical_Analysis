@@ -41,11 +41,53 @@ The goal of the analysis is to bring insights for AutosRUs. By performing some s
   Each Pr(>|t|) value represents the probability that each coefficient contributes a random amount of variance to the linear model. According to our results, Vehicle Lenght and Ground Clearance (as well as intercept) are statistically unlikely to provide random amounts of variance to the linear model. In other words the Vehicle Lenght and Ground Clearance have a significant impact on MPG.
   Despite the number of significant variables, the multiple linear regression model outperformed the simple linear regression. According to the summary output, the r-squared value has increased from 0.31 (the highest single value) in the simple linear regression model to 0.71 in the multiple linear regression model while the p-value remained significant for two variables.
 
+  When an intercept is statistically significant, it means that the intercept term explains a significant amount of variability in the dependent variable when all independent vairables are equal to zero.
+  
+  The results of these Linear Regressions are not the optimal as it will only predict the right mpg 71% of the time. It sounds like a high percentage, but it doesn't bring confidence in the results. 
 
 ## Summary Statistics on Suspension Coils
 
+Summary statistics total:
+
+![Total Summary](https://user-images.githubusercontent.com/103459820/184404323-9707e7b7-36b5-4f40-80fb-05414b2ab5c2.png)
+
+Summary statistics by Lot (total 3 lots):
+
+![Lot Summary](https://user-images.githubusercontent.com/103459820/184404409-8b997d85-11a4-4f03-a972-dc927c1f7e43.png)
+
+  The design specifications for the MechaCar suspension coils dictate that the variance of the suspension coils must not exceed 100 pounds per square inch.
+  According to the total summary the variance is in accordance to the requirement of less than 100PSI. However, 62.29 is still a high value, and by furthering investigating the lots separetely:
+     - Lot 1 is the best and optimal lot;
+     - Lot 2 has a higher variance which it would be enough to evaluate the problem.
+     - Lot 3 is extremelly high. And it should defnitely be reavaluated.
 
 ## T-Tests on Suspension Coils
 
+  A t-test to compare the mean of one dataset to another under a few assumptions. There are two main forms of the t-test: the one-sample t-test and the two-sample t-test. 
+  We will be using the one-sample t-test to determine whether there is a statistical difference between the means of a sample dataset and a hypothesized, potential population dataset of 1500 PSI. In other words, a one-sample t-test will test the following hypotheses:
 
+H0 : There is no statistical difference between the observed sample mean and its presumed population mean of 1500PSI.
+Ha : There is a statistical difference between the observed sample mean and its presumed population mean. of 1500PSI.
+
+  First, let's compare the whole dataset to the hipotetical popupation mean:
+  
+  ![All_ttest](https://user-images.githubusercontent.com/103459820/184410462-e3b907be-cf3a-4583-a747-470d3f2c1ecd.png)
+
+Assuming our significance level was the common 0.05 percent, our p-value 0.061 and is above our significance level. Therefore, we do not have sufficient evidence to reject the null hypothesis, and we would state that the two means are statistically similar.
+  But taking in consideration that the Lot 3 is statistically off. Let's evaluate each Lot separetely:
+  
+  One-sided T-Test:
+  - Lot 1: P-value = 1.
+  - Lot 2: P-value = 0.6072.
+  - Lot 3: P-value = 0.0417.
+
+ This show that the Lot 3 p-values is bellow 0.05. Therefore, we have sufficient evidence to NOT reject the null hypothesis.
+ Affirming that there is a statistical difference in products is not a positive results, because the produts should be as similar as possible.
+ 
 ## Study Design: MechaCar vs Competition
+
+  Let's start by selecting the metric which would interest the costumers the most: MPG, Vehicle Length (Size), Safety rating, and horse power.
+  Than, in order to comepare between competitors, we would make a Chi-Squared Test in teh categories to find different frequencies between the companies.
+  Then, we would perform an ANOVA test in this category across all competitors to fil which categories MechaCar is falling behind.
+  With these to tests, we would have a good start in evaluating the strategy for next year specifications for the cars.
+  
