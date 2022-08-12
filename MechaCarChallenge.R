@@ -34,8 +34,6 @@ lm(mpg ~ vehicle_length + vehicle_weight + spoiler_angle + ground_clearance + AW
 
 summary(lm(mpg ~ vehicle_length + vehicle_weight + spoiler_angle + ground_clearance + AWD, data=mecha_data))
 
-#Utilizing only significant values in the second multiple linear regression
-summary(lm(mpg ~ vehicle_weight + spoiler_angle + AWD, data=mecha_data))
 
 ################################################################################
 # Suspension Coil DATA
@@ -48,6 +46,22 @@ lot_summary <- coil_data %>% group_by(Manufacturing_Lot) %>%
 
 ################################################################################
 # T-Tests on Suspension Coils
+# All dataset to 1500mean:
+t_all <- t.test(coil_data$PSI, mu=1500)
 
+#T-Tests on all lots
+lot1 <- coil_data[coil_data$Manufacturing_Lot == 'Lot1',]
+lot2 <- coil_data[coil_data$Manufacturing_Lot == 'Lot2',]
+lot3 <- coil_data[coil_data$Manufacturing_Lot == 'Lot3',]
+
+t_lot1 <- t.test(lot1$PSI,mu=1500)
+t_lot2 <- t.test(lot2$PSI,mu=1500)
+t_lot3 <- t.test(lot3$PSI,mu=1500)
+
+#using subset
+LOTx <- subset(coil_data, Manufactoring_Lot == 'Lot1')
+
+################################################################################
+# 
 
                            
